@@ -155,7 +155,9 @@ class Scrape(BaseModel):
 
     def to_sql(self, table_name: str, engine=engine) -> None:
         data = self.data()
-        data.to_sql(table_name, engine, if_exists="replace", index=False)
+        data.to_sql(
+            table_name, engine, if_exists="replace", index=False
+        )  # todo, here is where logic goes for data persistence
 
 
 def database_to_sheets(
@@ -176,7 +178,8 @@ def database_to_sheets(
     worksheet.clear()
     worksheet.update([df.columns.values.tolist()] + df.values.tolist())
     worksheet.insert_note(
-        "A1", "Note: your modifications will be overwritten on update. Feel to change/sort the cells, they just won't persist."
+        "A1",
+        "Note: your modifications will be overwritten on update. Feel to change/sort the cells, they just won't persist.",
     )
 
 
