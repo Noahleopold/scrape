@@ -144,10 +144,6 @@ class ScrapeTarget(BaseModel):
 class Scrape(BaseModel):
     targets: list[ScrapeTarget]
 
-    def __init__(self, targets: list[ScrapeTarget]) -> None:
-        super().__init__(targets=targets)
-        self.scrape()
-
     def scrape(self) -> list[CompanyRecord]:
         companies = []
         for target in self.targets:
@@ -180,8 +176,7 @@ def database_to_sheets(
     worksheet.clear()
     worksheet.update([df.columns.values.tolist()] + df.values.tolist())
     worksheet.insert_note(
-        "A1",
-        "Note: your modifications will be overwritten on update. Feel to change/sort the cells, they just won't persist.",
+        "A1", "Note: your modifications will be overwritten on update. Feel to change/sort the cells, they just won't persist."
     )
 
 
