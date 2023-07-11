@@ -179,6 +179,10 @@ def database_to_sheets(
     worksheet = gc.open(sheet_name).worksheet(sheet_table_name)
     worksheet.clear()
     worksheet.update([df.columns.values.tolist()] + df.values.tolist())
+    worksheet.insert_note(
+        "A1",
+        "Note: your modifications will be overwritten on update. Feel to change/sort the cells, they just won't persist.",
+    )
 
 
 if __name__ == "__main__":
