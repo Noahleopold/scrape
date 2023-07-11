@@ -1,21 +1,15 @@
-from pydantic import BaseModel
 from bs4 import BeautifulSoup
-import requests
-from typing import Optional
-import re
-import pandas as pd
-import time
-import json
-from sqlalchemy import create_engine
-
-
-import gspread
 from google.oauth2.service_account import Credentials
-
-
-from pandas import DataFrame
-
+from pydantic import BaseModel
+from sqlalchemy import create_engine
+from typing import Optional
+import gspread
+import json
 import os
+import pandas as pd
+import re
+import requests
+import time
 
 CB_API_KEY = os.environ.get("CB_API_KEY")
 if not CB_API_KEY:
