@@ -15,7 +15,7 @@ export CB_API_KEY="your_api_key"
 ```
 
 ### Step 4:
-Configure google sheet credentials in a file called "scrape.json" in the root directory. See [here](https://developers.google.com/sheets/api/quickstart/python) for more information.
+Configure google sheet credentials in a file called "scrape.json" in the root project directory. See [here](https://developers.google.com/sheets/api/quickstart/python) for more information.
 
 ### Step 5:
 ```
