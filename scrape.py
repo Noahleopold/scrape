@@ -191,7 +191,7 @@ if __name__ == "__main__":
     scrape = Scrape(
         targets=[
             ScrapeTarget(
-                name="Space Capital",
+                name="space_capital",
                 url="https://www.spacecapital.com/portfolio",
                 target=ScrapeProperties(
                     name="div",
@@ -210,4 +210,6 @@ if __name__ == "__main__":
         ]
     )
     print(scrape.data())
-    scrape.to_sql("space_capital")
+    scrape.to_sql("portfolio")
+
+    database_to_sheets("portfolio", "scrape4", "Portfolio")
