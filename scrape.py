@@ -13,15 +13,13 @@ import time
 
 CB_API_KEY = os.environ.get("CB_API_KEY")
 if not CB_API_KEY:
-    raise ValueError(
-        "CB_KEY environment variable not set, should be a Crunchbase API key"
-    )
+    print("CB_KEY environment variable not set, should be a Crunchbase API key")
+    CB_API_KEY = input("Enter your Crunchbase API key: ")
 
 DATABASE = os.environ.get("DATABASE")
 if not DATABASE:
-    raise ValueError(
-        "DATABASE environment variable not set, should look like 'mysql+mysqlconnector://username:password@host:port/database'"
-    )
+    print("DATABASE not found, Setting default...")
+    DATABASE = "mysql+mysqlconnector://user:password@127.0.0.1:3306/db"
 
 engine = create_engine(DATABASE)  # type: ignore
 
@@ -52,10 +50,9 @@ class CompanyRecord(BaseModel):
         # todo, this needs to hit a search endpoint instead of guessing the name
         # todo, maybe there is a batch endpoint as well?
         base_url = "https://api.crunchbase.com/api/v4/entities/organizations/"
-        headers = {"X-Cb-User-Key": CB_API_KEY}
         formatted_company = re.sub(r"[ .]", "-", self.company.lower())
         url = f"{base_url}{formatted_company}?field_ids=short_description,website_url"
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers={"X-Cb-User-Key": CB_API_KEY})
         time.sleep(2)
         try:
             response.raise_for_status()
@@ -208,4 +205,4 @@ if __name__ == "__main__":
     print(scrape.data())
     scrape.to_sql("portfolio")
 
-    database_to_sheets("portfolio", "scrape4", "Portfolio")
+#    database_to_sheets("portfolio", "scrape4", "Portfolio")

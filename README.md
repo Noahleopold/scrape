@@ -5,6 +5,21 @@
 Locate the MySQL database you want to use, or create a new one.
 [Download MySQL](https://dev.mysql.com/downloads/mysql/)
 
+Alternatively, use docker-compose to create.
+[Install Docker Compose](https://docs.docker.com/compose/install/)
+```
+# pull the server image
+docker pull mysql
+
+# make sure docker is running first. (launch docker desktop)
+docker-compose -f "docker-compose.yml" up -d
+```
+
+When you are done running the application, stop the container with:
+```
+docker-compose down
+```
+
 ### Step 3:
 Set your DATABASE and CB_API_KEY environment variable.
 
