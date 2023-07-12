@@ -13,7 +13,7 @@ import time
 
 CB_API_KEY = os.environ.get("CB_API_KEY")
 if not CB_API_KEY:
-    print("CB_KEY environment variable not set, should be a Crunchbase API key")
+    print("CB_API_KEY environment variable not set, should be a Crunchbase API key")
     CB_API_KEY = input("Enter your Crunchbase API key: ")
 
 DATABASE = os.environ.get("DATABASE")
